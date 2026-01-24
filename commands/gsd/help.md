@@ -269,6 +269,26 @@ Systematic debugging with persistent state across context resets.
 Usage: `/gsd:debug "login button doesn't work"`
 Usage: `/gsd:debug` (resume active session)
 
+### Experimentation
+
+**`/gsd:experiment [problem description]`**
+Hypothesis-driven experimentation when fix needs exploration.
+
+- Structured experiments with research → plan → execute → verify loop
+- Each hypothesis is fully documented and tracked
+- Learnings accumulate across failed attempts
+- Survives `/clear` — run `/gsd:experiment` with no args to resume
+- Integrates with `/gsd:debug` when root cause is found but fix is unclear
+
+Usage: `/gsd:experiment "Safari auth not working despite cookie fix"`
+Usage: `/gsd:experiment` (resume active experiment)
+
+**When to use:**
+- Root cause known but multiple solutions possible
+- Need to try approach A, then B, then C systematically
+- Each attempt requires research before implementation
+- Want to preserve learnings across attempts
+
 ### Todo Management
 
 **`/gsd:add-todo [description]`**
@@ -386,6 +406,7 @@ Usage: `/gsd:join-discord`
 │   └── done/             # Completed todos
 ├── debug/                # Active debug sessions
 │   └── resolved/         # Archived resolved issues
+├── experiments/          # Active experiment sessions
 ├── codebase/             # Codebase map (brownfield projects)
 │   ├── STACK.md          # Languages, frameworks, dependencies
 │   ├── ARCHITECTURE.md   # Patterns, layers, data flow
@@ -508,6 +529,18 @@ Example config:
 /gsd:map-algorithms                          # Detect and document all algorithms
 /gsd:map-algorithms src/filters/*.py         # Document specific files
 /gsd:algorithm-drift ekf                     # Check if spec matches code
+```
+
+**Debugging with experimentation (complex fixes):**
+
+```
+/gsd:debug "Safari login fails"              # Find root cause
+# → Root cause: "Safari blocks third-party cookies"
+# → Choose: "Experiment with fixes"
+/gsd:experiment                              # Orchestrator starts experiment
+# → Hypothesis 1: Use first-party cookies → Failed (partial fix)
+# → Hypothesis 2: Switch to JWT tokens → Failed (breaks mobile)
+# → Hypothesis 3: Session storage fallback → Passed!
 ```
 
 ## Getting Help
