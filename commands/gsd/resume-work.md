@@ -9,32 +9,10 @@ allowed-tools:
   - SlashCommand
 ---
 
-<objective>
-Restore complete project context and resume work seamlessly from previous session.
+# Resume Work
 
-Routes to the resume-project workflow which handles:
+Restores complete project context and resumes work from a previous session.
 
-- STATE.md loading (or reconstruction if missing)
-- Checkpoint detection (.continue-here files)
-- Incomplete work detection (PLAN without SUMMARY)
-- Status presentation
-- Context-aware next action routing
-  </objective>
-
-<execution_context>
 @~/.claude/get-shit-done/workflows/resume-project.md
-</execution_context>
 
-<process>
-**Follow the resume-project workflow** from `@~/.claude/get-shit-done/workflows/resume-project.md`.
-
-The workflow handles all resumption logic including:
-
-1. Project existence verification
-2. STATE.md loading or reconstruction
-3. Checkpoint and incomplete work detection
-4. Visual status presentation
-5. Context-aware option offering (checks CONTEXT.md before suggesting plan vs discuss)
-6. Routing to appropriate next command
-7. Session continuity updates
-   </process>
+Follow the resume-project workflow. It verifies the project exists, loads or reconstructs STATE.md, detects checkpoints (.continue-here files) and incomplete work (PLAN without SUMMARY), presents visual status, checks for CONTEXT.md before suggesting plan versus discuss, routes to the appropriate next command, and updates session continuity.

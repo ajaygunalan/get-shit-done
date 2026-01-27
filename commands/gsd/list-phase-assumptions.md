@@ -9,42 +9,10 @@ allowed-tools:
   - Glob
 ---
 
-<objective>
-Analyze a phase and present Claude's assumptions about technical approach, implementation order, scope boundaries, risk areas, and dependencies.
+# List Phase Assumptions
 
-Purpose: Help users see what Claude thinks BEFORE planning begins - enabling course correction early when assumptions are wrong.
-Output: Conversational output only (no file creation) - ends with "What do you think?" prompt
-</objective>
+Surfaces Claude's assumptions about a phase before planning begins — enabling early course correction when assumptions are wrong. Output is conversational only, no files created.
 
-<execution_context>
 @~/.claude/get-shit-done/workflows/list-phase-assumptions.md
-</execution_context>
 
-<context>
-Phase number: $ARGUMENTS (required)
-
-**Load project state first:**
-@.planning/STATE.md
-
-**Load roadmap:**
-@.planning/ROADMAP.md
-</context>
-
-<process>
-1. Validate phase number argument (error if missing or invalid)
-2. Check if phase exists in roadmap
-3. Follow list-phase-assumptions.md workflow:
-   - Analyze roadmap description
-   - Surface assumptions about: technical approach, implementation order, scope, risks, dependencies
-   - Present assumptions clearly
-   - Prompt "What do you think?"
-4. Gather feedback and offer next steps
-</process>
-
-<success_criteria>
-
-- Phase validated against roadmap
-- Assumptions surfaced across five areas
-- User prompted for feedback
-- User knows next steps (discuss context, plan phase, or correct assumptions)
-  </success_criteria>
+Load @.planning/STATE.md and @.planning/ROADMAP.md. Validate the phase number from $ARGUMENTS — error if missing, invalid, or absent from the roadmap. Analyze the roadmap description and present assumptions across five areas: technical approach, implementation order, scope boundaries, risk areas, and dependencies. End with "What do you think?" to gather feedback, then offer next steps: discuss context, plan phase, or correct assumptions.
